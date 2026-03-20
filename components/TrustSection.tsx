@@ -41,8 +41,8 @@ export default function TrustSection() {
           >
             <div className="w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden shadow-lg relative">
               <Image
-                src="https://images.unsplash.com/photo-1610527003928-47afd5f470c6?w=640&q=80&fit=crop"
-                alt="Professional cleaning — placeholder for Lauren's photo"
+                src="/images/Lauren.jpg"
+                alt="Lauren — Clean Therapy"
                 fill
                 className="object-cover"
                 sizes="320px"
