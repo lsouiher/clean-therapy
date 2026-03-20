@@ -2,17 +2,50 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
-// Replace with real photo paths in /public/images/
+// Placeholder Unsplash photos — replace with real photos later
 const photos = [
-  { id: "1", alt: "Clean kitchen — Cleveland Heights" },
-  { id: "2", alt: "Spotless bathroom — Westlake" },
-  { id: "3", alt: "Living room deep clean — Rocky River" },
-  { id: "4", alt: "Sparkling countertops — Lakewood" },
-  { id: "5", alt: "Organized bedroom — Shaker Heights" },
-  { id: "6", alt: "Fresh floors — Strongsville" },
-  { id: "7", alt: "Kitchen detail — Cleveland" },
-  { id: "8", alt: "Bathroom tile work — Parma" },
+  {
+    id: "1",
+    alt: "Clean kitchen — Cleveland Heights",
+    src: "https://images.unsplash.com/photo-1759239572496-4ec13e7643d6?w=800&q=80&fit=crop",
+  },
+  {
+    id: "2",
+    alt: "Spotless bathroom — Westlake",
+    src: "https://images.unsplash.com/photo-1613849925362-38fb4c16ff36?w=800&q=80&fit=crop",
+  },
+  {
+    id: "3",
+    alt: "Living room deep clean — Rocky River",
+    src: "https://images.unsplash.com/photo-1768609239321-1cfe14893e80?w=800&q=80&fit=crop",
+  },
+  {
+    id: "4",
+    alt: "Sparkling countertops — Lakewood",
+    src: "https://images.unsplash.com/photo-1613545564235-db7af30081bf?w=800&q=80&fit=crop",
+  },
+  {
+    id: "5",
+    alt: "Organized bedroom — Shaker Heights",
+    src: "https://images.unsplash.com/photo-1741559935512-3b018321e35f?w=800&q=80&fit=crop",
+  },
+  {
+    id: "6",
+    alt: "Fresh floors — Strongsville",
+    src: "https://images.unsplash.com/photo-1722604828977-395d52c3cd23?w=800&q=80&fit=crop",
+  },
+  {
+    id: "7",
+    alt: "Kitchen detail — Cleveland",
+    src: "https://images.unsplash.com/photo-1582667407868-07060cb5e61f?w=800&q=80&fit=crop",
+  },
+  {
+    id: "8",
+    alt: "Bathroom tile work — Parma",
+    src: "https://images.unsplash.com/photo-1754574741164-a41418029cfb?w=800&q=80&fit=crop",
+  },
 ];
 
 export default function PhotoGallery() {
@@ -32,17 +65,17 @@ export default function PhotoGallery() {
             onClick={() => setLightbox(i)}
           >
             <div
-              className={`rounded-xl overflow-hidden bg-gradient-to-br from-sage-100 to-cream-200 flex items-center justify-center group-hover:shadow-lg transition-shadow ${
+              className={`rounded-xl overflow-hidden bg-sage-100 group-hover:shadow-lg transition-shadow relative ${
                 i % 3 === 0 ? "h-64" : i % 3 === 1 ? "h-48" : "h-56"
               }`}
             >
-              {/* Replace with: <Image src={`/images/gallery-${photo.id}.jpg`} ... /> */}
-              <div className="text-center p-4">
-                <svg className="w-8 h-8 mx-auto text-sage-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-xs text-sage-500">{photo.alt}</p>
-              </div>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
             </div>
           </motion.div>
         ))}
@@ -65,11 +98,14 @@ export default function PhotoGallery() {
               className="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-sage-100 to-cream-200 flex items-center justify-center">
-                {/* Replace with actual image */}
-                <p className="text-sage-500 font-medium">
-                  {photos[lightbox].alt}
-                </p>
+              <div className="aspect-[4/3] relative bg-sage-100">
+                <Image
+                  src={photos[lightbox].src.replace("w=800", "w=1200")}
+                  alt={photos[lightbox].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
               </div>
               <div className="p-4 flex items-center justify-between">
                 <p className="text-sm text-charcoal-700">{photos[lightbox].alt}</p>

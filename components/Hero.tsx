@@ -1,13 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background — placeholder gradient simulating a warm home interior */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sage-100 via-cream-100 to-sage-200" />
-      <div className="absolute inset-0 bg-charcoal-900/30" />
+      {/* Background — Unsplash placeholder of a bright clean home interior */}
+      <Image
+        src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80&fit=crop"
+        alt="Clean, bright home interior"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-charcoal-900/40" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
         <motion.div

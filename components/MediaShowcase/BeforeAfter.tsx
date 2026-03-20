@@ -1,18 +1,39 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Image from "next/image";
 
 interface CompareItem {
   id: string;
   label: string;
   location: string;
+  before: string;
+  after: string;
 }
 
-// Replace with real before/after image paths in /public/images/
+// Placeholder Unsplash photos — replace with real before/after photos later
 const compareItems: CompareItem[] = [
-  { id: "1", label: "Kitchen Deep Clean", location: "Rocky River, OH" },
-  { id: "2", label: "Bathroom Refresh", location: "Cleveland Heights, OH" },
-  { id: "3", label: "Living Room", location: "Lakewood, OH" },
+  {
+    id: "1",
+    label: "Kitchen Deep Clean",
+    location: "Rocky River, OH",
+    before: "https://images.unsplash.com/photo-1631396327584-5efaf434500a?w=800&q=80&fit=crop",
+    after: "https://images.unsplash.com/photo-1560185127-1902ccdc5094?w=800&q=80&fit=crop",
+  },
+  {
+    id: "2",
+    label: "Bathroom Refresh",
+    location: "Cleveland Heights, OH",
+    before: "https://images.unsplash.com/photo-1595579987159-32ca7b85e0e2?w=800&q=80&fit=crop",
+    after: "https://images.unsplash.com/photo-1753605788101-04d1e653e74a?w=800&q=80&fit=crop",
+  },
+  {
+    id: "3",
+    label: "Living Room",
+    location: "Lakewood, OH",
+    before: "https://images.unsplash.com/photo-1706042555112-4ae1b484a742?w=800&q=80&fit=crop",
+    after: "https://images.unsplash.com/photo-1751945965597-71171ec7a458?w=800&q=80&fit=crop",
+  },
 ];
 
 function CompareSlider({ item }: { item: CompareItem }) {
@@ -51,16 +72,34 @@ function CompareSlider({ item }: { item: CompareItem }) {
         onPointerLeave={handlePointerUp}
       >
         {/* "After" side (full background) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-sage-200 to-cream-200 flex items-center justify-center">
-          <span className="text-sage-500 font-medium text-sm">After</span>
+        <div className="absolute inset-0">
+          <Image
+            src={item.after}
+            alt={`${item.label} — After`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <span className="absolute bottom-3 right-3 bg-sage-500/80 text-white text-xs font-semibold px-2 py-1 rounded">
+            After
+          </span>
         </div>
 
         {/* "Before" side (clipped) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-charcoal-700/20 to-charcoal-700/40 flex items-center justify-center"
+          className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
-          <span className="text-charcoal-700 font-medium text-sm">Before</span>
+          <Image
+            src={item.before}
+            alt={`${item.label} — Before`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <span className="absolute bottom-3 left-3 bg-charcoal-700/80 text-white text-xs font-semibold px-2 py-1 rounded">
+            Before
+          </span>
         </div>
 
         {/* Slider line */}
@@ -89,7 +128,6 @@ export default function BeforeAfter() {
         <CompareSlider key={item.id} item={item} />
       ))}
       <p className="col-span-full text-center text-sm text-charcoal-700/60 mt-4">
-        {/* Replace placeholder gradients with real before/after photos in /public/images/ */}
         Drag the slider to compare before and after results.
       </p>
     </div>
