@@ -17,12 +17,13 @@
 1. Go to [formspree.io](https://formspree.io) and create a free account
 2. Click **"New Form"**, name it "Clean Therapy Contact"
 3. Copy the form endpoint (looks like `https://formspree.io/f/xABCDEFG`)
+   -locally Edit .env.local and replace YOUR_FORM_ID with it :  NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID  
+   Restart the dev server Ctrl+C then npm run dev 
 4. In Vercel dashboard → your project → **Settings → Environment Variables**
 5. Add:
    - **Key:** `NEXT_PUBLIC_FORMSPREE_ENDPOINT`
    - **Value:** your endpoint from step 3
-6. Redeploy (Settings → Deployments → click the `...` → Redeploy)
-
+6. Redeploy (Settings → Deployments → click the `...` → Redeploy)                                  
 ---
 
 ### Step 3: Connect Custom Domain *(manual — one time, optional)*
